@@ -1,4 +1,3 @@
-import math
 import string
 import time
 import random
@@ -20,20 +19,21 @@ def main():
     time.sleep(5)
     
     while True:
-        attempted = generate_phrase(len(goal_phrase))
         attempts += 1
+        attempted = generate_phrase(len(goal_phrase))
         print(f"Attempt: {attempts}. Phrase:{attempted}")
         
         if attempted == goal_phrase.lower():
             print(f"It took {attempts} attempts!")
-            probability = round((pow((1/27), len(goal_phrase)) * 100 * attempts), 3)
+            probability = initial_probability * attempts
             print(f'The probability of it happening in the this try is {probability}%.')
             
             if probability > 100:
-                print('Late than usual,')
-            else:
+                print('Unluckier than usual.')
+            elif probability < 100:
                 print('Luckier than usual.')
-                
+            else: 
+                print('Average.')
             break
         
         
